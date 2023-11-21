@@ -1,0 +1,1 @@
+- Need to link nvim config from this repo to actual location in .config
