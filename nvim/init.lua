@@ -7,6 +7,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- disable netrw at the very start of your init.lua from nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.mapleader = ';' -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 -- VSCode settings
@@ -93,8 +97,8 @@ if vim.g.vscode then
 
     -- Formatting
     vim.keymap.set('n', '<Leader>fm', ':call VSCodeNotify(\'editor.action.formatDocument\')<CR>')
-
-    -- General Settings
+    
+-- General Settings
 else
     local set = vim.opt
     set.cursorline = true
@@ -103,6 +107,9 @@ else
     set.relativenumber = true
     set.title = true
     set.signcolumn = 'yes'
+
+    -- set termguicolors to enable highlight groups
+    vim.opt.termguicolors = true
 
     -- Treat jj as escape
     vim.keymap.set('i', 'jj', '<ESC>', {
@@ -140,6 +147,17 @@ else
     'neovim/nvim-lspconfig', {
         'ms-jpq/coq_nvim',
         branch = 'coq'
+    },
+    -- File explorer
+    {"nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
     },
     -- Commenting'
     {
@@ -230,9 +248,16 @@ else
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+    -- Tree binds
+    vim.keymap.set('n', '<leader>tt', ':NvimTreeFocus<CR>' , {})
+    vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFile<CR>' , {})
+
+
     -- Setups
     require('coq')
-
+    
+    require("nvim-tree").setup()
+    
     require('Comment').setup()
 
     require('gitsigns').setup()
