@@ -108,25 +108,21 @@ else
     set.title = true
     set.signcolumn = 'yes'
 
+    -- tab sanity
+    set.tabstop = 4
+    set.shiftwidth = 4
+    set.expandtab = true
+    set.smartindent = true
+
+    -- search sanity 
+    set.incsearch = true -- highlight matching words 
+    set.ignorecase = true -- case insensitive 
+    set.smartcase = true -- unless mixed casing
+
+    set.clipboard = 'unnamedplus' -- system clipboard 
+
     -- set termguicolors to enable highlight groups
-    vim.opt.termguicolors = true
-
-    -- Treat jj as escape
-    vim.keymap.set('i', 'jj', '<ESC>', {
-        noremap = true
-    })
-
-    -- Tabs
-    vim.keymap.set('n', '<S-Tab>', 'gT', {
-        noremap = true
-    })
-    vim.keymap.set('n', '<Tab>', 'gt', {
-        noremap = true
-    })
-    vim.keymap.set('n', '<S-t>', ':tabnew<CR>', {
-        silent = true,
-        noremap = true
-    })
+    set.termguicolors = true
 
     -- COQ for completions
     vim.g.coq_settings = {
@@ -251,6 +247,20 @@ else
     -- Tree binds
     vim.keymap.set('n', '<leader>tt', ':NvimTreeFocus<CR>' , {})
     vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFile<CR>' , {})
+
+    -- Treat jj as escape
+    vim.keymap.set('i', 'jj', '<ESC>', {noremap = true})
+
+    -- Tabs
+    vim.keymap.set('n', '<S-Tab>', 'gT', {noremap = true})
+    vim.keymap.set('n', '<Tab>', 'gt', {noremap = true})
+    vim.keymap.set('n', '<S-t>', ':tabnew<CR>', {silent = true, noremap = true})
+
+    -- Window switching
+    vim.keymap.set('n', '<C-l>', '<C-w>l', {})
+    vim.keymap.set('n', '<C-h>', '<C-w>h', {})
+    vim.keymap.set('n', '<C-k>', '<C-w>k', {})
+    vim.keymap.set('n', '<C-j>', '<C-w>j', {})
 
 
     -- Setups

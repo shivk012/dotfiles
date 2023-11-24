@@ -1,1 +1,2 @@
 - Need to link nvim config from this repo to actual location in .config
+- Need to set iterm to use a config file 
