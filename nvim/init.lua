@@ -15,7 +15,6 @@ vim.g.mapleader = ';' -- Make sure to set `mapleader` before lazy so your mappin
 
 -- VSCode settings
 if vim.g.vscode then
-
     -- Plugins
     require('lazy').setup(
     {
@@ -93,7 +92,7 @@ if vim.g.vscode then
     vim.keymap.set('n', '<Leader>fg', ':call VSCodeNotify(\'find-it-faster.findWithinFiles\')<CR>')
 
     -- Definitions
-    vim.keymap.set('n', '<Leader>gh', ':call VSCodeNotify(\'reference-view.findReferences\')<CR>')
+    vim.keymap.set('n', 'gh', ':call VSCodeNotify(\'references-view.findReferences\')<CR>')
 
     -- Formatting
     vim.keymap.set('n', '<Leader>fm', ':call VSCodeNotify(\'editor.action.formatDocument\')<CR>')
@@ -133,33 +132,43 @@ else
     require('lazy').setup({ 
     -- Theme
     'oxfist/night-owl.nvim', 
+
     -- Git
     'lewis6991/gitsigns.nvim', 
     'tpope/vim-fugitive',
+    
     -- Mason
     'williamboman/mason.nvim', 
+    
     -- LSP
     'williamboman/mason-lspconfig.nvim', 
     'neovim/nvim-lspconfig', {
         'ms-jpq/coq_nvim',
         branch = 'coq'
     },
+    
+    -- Formatting
+    'mfussenegger/nvim-lint',
+    'sbdchd/neoformat',
+    
     -- File explorer
     {"nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
+        version = "*",
+        lazy = false,
+        dependencies = {
+          "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+          require("nvim-tree").setup {}
+        end,
     },
-    config = function()
-      require("nvim-tree").setup {}
-    end,
-    },
+    
     -- Commenting'
     {
         'numToStr/Comment.nvim',
         lazy = false
     }, 
+    
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -167,7 +176,7 @@ else
         config = function()
             local configs = require("nvim-treesitter.configs")
             configs.setup({
-                ensure_installed = {"lua", "html", "rust", "javascript", "python"},
+                ensure_installed = {"lua", "html", "rust", "javascript", "python", "markdown"},
                 sync_install = false,
                 highlight = {
                     enable = true,
@@ -277,10 +286,27 @@ else
 
     require('mason').setup()
 
+    require('nvim-web-devicons').setup {default=true;}
+
     require('mason-lspconfig').setup {
-        ensure_installed = {'pyright', 'rust_analyzer'}
+        ensure_installed = {'pyright', 'rust_analyzer', 'marksman'}
     }
 
+    -- Auto run linters 
+    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+      callback = function()
+        require("lint").try_lint()
+      end,
+    })
+    -- Markdown
+    require('lint').linters_by_ft = {
+        markdown = {'vale',}
+    }
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = { "markdown", "*.md" },
+      command = "Neoformat prettierd",
+    })
     -- Python
     local config = require('lspconfig.configs')
     require('lspconfig').pyright.setup {
