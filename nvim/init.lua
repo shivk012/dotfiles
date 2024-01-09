@@ -303,6 +303,13 @@ else
         markdown = {'vale',}
     }
 
+    vim.g.markdown_folding = 1
+    vim.g.neoformat_markdown_prettierd = {
+        exe='prettierd',
+        stdin=1,
+        args={'--tab-width=4', '"%:p"'}
+    }
+    vim.g.neofortmat_enabled_markdown = {'prettierd'}
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = { "markdown", "*.md" },
       command = "Neoformat prettierd",
