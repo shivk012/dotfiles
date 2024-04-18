@@ -300,14 +300,14 @@ else
     })
     -- Markdown
     require('lint').linters_by_ft = {
-        markdown = {'vale',}
+        markdown = {'markdownlint',}
     }
 
     vim.g.markdown_folding = 1
     vim.g.neoformat_markdown_prettierd = {
         exe='prettierd',
         stdin=1,
-        args={'--tab-width=4', '"%:p"'}
+        args={'--tab-width=2', '"%:p"'}
     }
     vim.g.neofortmat_enabled_markdown = {'prettierd'}
     vim.api.nvim_create_autocmd("BufWritePre", {
