@@ -1,10 +1,23 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-  "os"
+	"os"
 	"strings"
 )
+
+type Item struct {
+	UID      string `json:"uid"`
+	Title    string `json:"title"`
+	Subtitle string `json:"subtitle"`
+	Arg      string `json:"arg"`
+	Valid    bool   `json:"valid"`
+}
+
+type Payload struct {
+	Items []Item `json:"items"`
+}
 
 func fromImportConverter(input string) string {
 	split := strings.Fields(input)
@@ -17,14 +30,33 @@ func dotPathConverter(input string) string {
 }
 
 func main() {
-  query := os.Args[1]
-	var pathOut string
+	query := os.Args[1]
 
-	if strings.Fields(query)[0] == "from" {
+	var pathOut string
+	
+  if strings.Fields(query)[0] == "from" {
 		pathOut = fromImportConverter(query)
 	} else {
 		pathOut = dotPathConverter(query)
 	}
 
-	fmt.Println(pathOut)
+	item := Item{
+		UID:      "path",
+		Title:    pathOut,
+		Subtitle: "Enter to copy",
+		Arg:      pathOut,
+		Valid:    true,
+	}
+
+	payload := Payload{
+		Items: []Item{item},
+	}
+
+	jsonPayload, err := json.Marshal(payload)
+	if err != nil {
+		fmt.Println("Error marshalling JSON:", err)
+		return
+	}
+
+	fmt.Println(string(jsonPayload))
 }
