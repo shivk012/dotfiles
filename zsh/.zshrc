@@ -217,3 +217,7 @@ export AWS_PAGER=""
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 enable-fzf-tab
+
+eval "$(zoxide init zsh)"
+
+
