@@ -168,9 +168,21 @@ export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# HISTORY
+export HISTSIZE=100000
 export HISTFILE=/Users/shivam.kumar/.zsh_history
+export SAVEHIST=$HISTSIZE
 
-export NODE_OPTIONS="--max-old-space-size=8192"
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt SHARE_HISTORY             # Share history between all sessions.
+# END HISTORY
+
 alias note='cd ~/Documents/Notes/ && nvim ~/Documents/Notes/'
 
 alias whd_test_functional="pytest --create-db --dc=OEGBSupportSite --ds=tests.settings /Users/shivam.kumar/projects/kraken-core/src/tests/functional/supportsite/subsystems/gbr_energy/plugins/territories/gbr/warm_home_discount"
