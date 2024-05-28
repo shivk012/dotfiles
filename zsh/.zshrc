@@ -192,6 +192,8 @@ alias invfzf='print -z -- inv $(inv --list | cut -d " " -f 3 | sed "/^$/d" | fzf
 
 alias fixup='print -z -- git commit --fixup $(git log -n 10 --no-merges --pretty="%h %s" | fzf | cut  -c -7)'
 
+alias aliasfzf='print -z -- $(alias | fzf | sed "s/\=.*//")'
+
 function db_setting() {
   print -z -- "all-dbs \"select key, value, created_at from \\\"config_setting\\\" where key = '$1' LIMIT 1\""
 }
