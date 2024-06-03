@@ -221,8 +221,7 @@ td(){
 # Created by `pipx` on 2023-10-20 16:10:19
 export PATH="$PATH:/Users/shivam.kumar/.local/bin"
 
-autoload -U bashcompinit
-bashcompinit
+autoload -U compinit && compinit
 eval "$(register-python-argcomplete pipx)"
 
 export AWS_PAGER=""

@@ -63,3 +63,4 @@
   "venv-selector.nvim": { "branch": "main", "commit": "1d306371b1bf01bcc892630107d45fa7ad0161e2" },
   "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" },
   "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" }
+}
