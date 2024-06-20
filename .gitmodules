@@ -4,3 +4,9 @@
 [submodule ".tmux/plugins/tmux"]
 	path = .tmux/plugins/tmux
 	url = https://git::@github.com/catppuccin/tmux
+[submodule ".tmux/plugins/tmuxifier"]
+	path = .tmux/plugins/tmuxifier
+	url = git@github.com:jimeh/tmuxifier.git
+[submodule ".tmux/plugins/vim-tmux-navigator"]
+	path = .tmux/plugins/vim-tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator.git
