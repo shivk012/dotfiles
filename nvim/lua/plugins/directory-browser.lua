@@ -8,7 +8,7 @@ return {
   keys = {
     {
       "<leader>-",
-      ":Triptych<CR>",
+      "<cmd>Triptych<CR>",
       desc = "Toggle Triptych",
     },
   },
