@@ -4,7 +4,6 @@ return {
     opts = {
       linters_by_ft = {
         python = { "ruff" },
-        ["*"] = { "cspell", "codespell" },
       },
     },
   },

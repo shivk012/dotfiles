@@ -198,6 +198,13 @@ function db_setting() {
   print -z -- "all-dbs \"select key, value, created_at from \\\"config_setting\\\" where key = '$1' LIMIT 1\""
 }
 
+function clear_db(){
+  unset DATABASE_NAME
+  unset DATABASE_USER
+  unset DATABASE_PASSWORD
+  unset DATABASE_REPLICA_HOST
+  unset FORCE_SUPPORT_SITE_USER_ID
+}
 
 function autosquash() {
     local num=$1
