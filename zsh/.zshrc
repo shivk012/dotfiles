@@ -243,3 +243,6 @@ eval "$(zoxide init zsh)"
 # tmuxifier
 export PATH="$PATH:$HOME/.tmux/plugins/tmuxifier/bin"
 eval "$(tmuxifier init -)"
+
+# ipython pdb
+export PYTHONBREAKPOINT=ipdb.set_trace
