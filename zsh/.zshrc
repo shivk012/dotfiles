@@ -94,7 +94,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt SHARE_HISTORY             # Share history between all sessions.
 # END HISTORY
 
-alias ls = 'exa'
+alias ls='eza'
 
 alias note='cd ~/Documents/Notes/ && nvim ~/Documents/Notes/'
 

@@ -10,6 +10,7 @@ return {
       "<leader>-",
       "<cmd>Triptych<CR>",
       desc = "Toggle Triptych",
+      silent = true,
     },
   },
   config = function()
