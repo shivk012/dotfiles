@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "tokyonight_moon"
 
 config.default_cursor_style = "BlinkingBar"
 
