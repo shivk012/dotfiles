@@ -108,6 +108,7 @@ eval "$(tmuxifier init -)"
 # ipython pdb
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+eval $(thefuck --alias fk)
 
 # Work specific ones 
 # TODO: Move these out 
@@ -122,5 +123,5 @@ function clear_db(){
   unset FORCE_SUPPORT_SITE_USER_ID
 }
 
-alias test='print -z inv localdev.pytest'
-
+alias test='inv localdev.pytest'
+export KRAKEN_DB_PG_CLIENT=harlequin
