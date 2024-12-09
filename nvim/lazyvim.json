@@ -1,6 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.editor.aerial",
     "lazyvim.plugins.extras.editor.fzf",
@@ -16,9 +15,7 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.lsp.none-ls",
     "lazyvim.plugins.extras.ui.mini-indentscope",
-    "lazyvim.plugins.extras.ui.treesitter-context",
-    "lazyvim.plugins.extras.util.mini-hipatterns",
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.ui.treesitter-context"
   ],
   "news": {
     "NEWS.md": "7429"
