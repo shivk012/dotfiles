@@ -1,3 +1,4 @@
+export PATH="/opt/homebrew/bin:$PATH"
 eval "$(starship init zsh)"
 export ZSH="$HOME/.oh-my-zsh"
 
