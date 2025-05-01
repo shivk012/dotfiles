@@ -110,6 +110,8 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 eval $(thefuck --alias fk)
 
+alias theshiv='git add . && git commit --amend --no-edit && git push -f'
+
 # Work specific ones 
 # TODO: Move these out 
 alias invfzf='print -z -- inv $(inv --list | cut -d " " -f 3 | sed "/^$/d" | fzf --preview="inv -h={}")'
