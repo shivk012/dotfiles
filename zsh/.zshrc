@@ -4,9 +4,30 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
-plugins=(fzf-tab git zsh-nvm evalcache
+plugins=(fzf-tab git zsh-nvm evalcache zsh-fzf-history-search
 )
 source $ZSH/oh-my-zsh.sh
+
+# styling for fzf-tab 
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -73,6 +94,7 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 # END HISTORY
 
 alias ls='eza'
+alias cat='bat'
 
 alias note='cd ~/Documents/Notes/ && nvim ~/Documents/Notes/'
 
@@ -115,6 +137,7 @@ alias theshiv='git add . && git commit --amend --no-edit && git push -f'
 
 # Work specific ones 
 # TODO: Move these out 
+alias gbr-dbs='all-dbs --clients oegb,edfgb,eonnext,goodenergy '
 alias invfzf='print -z -- inv $(inv --list | cut -d " " -f 3 | sed "/^$/d" | fzf --preview="inv -h={}")'
 
 function clear_db(){
