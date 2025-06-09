@@ -151,3 +151,29 @@ function clear_db(){
 
 alias test='inv localdev.pytest'
 export KRAKEN_DB_PG_CLIENT=harlequin
+# export PYTHONPATH='$PYTHONPATH:/Users/shivam.kumar/.virtualenvs/kraken-core/lib/python3.12/site-packages/:/Users/shivam.kumar/projects/kraken-core/src'
+
+function shell_plus(){
+  local client=$1
+  local json_output
+  json_output=$(ktdb connections get "$client-prod.krakencore" --reveal-password)
+  DATABASE_PASSWORD=$(echo "$json_output" | jq -r '.password') \
+  DATABASE_USER=$(echo "$json_output" | jq -r '.username') \
+  DATABASE_HOST=$(echo "$json_output" | jq -r '.host') \
+  DATABASE_PORT=$(echo "$json_output" | jq -r '.port') \
+  DATABASE_NAME=$(echo "$json_output" | jq -r '.database') \
+  DJANGO_SETTINGS_MODULE=octoenergy.settings \
+  inv localdev.manage shell_plus --client $client
+}
+function supportsite(){
+  local client=$1
+  local json_output
+  json_output=$(ktdb connections get "$client-prod.krakencore" --reveal-password)
+  DATABASE_PASSWORD=$(echo "$json_output" | jq -r '.password') \
+  DATABASE_USER=$(echo "$json_output" | jq -r '.username') \
+  DATABASE_HOST=$(echo "$json_output" | jq -r '.host') \
+  DATABASE_PORT=$(echo "$json_output" | jq -r '.port') \
+  DATABASE_NAME=$(echo "$json_output" | jq -r '.database') \
+  DJANGO_SETTINGS_MODULE=octoenergy.settings \
+  inv supportsite.run --client $client
+}
