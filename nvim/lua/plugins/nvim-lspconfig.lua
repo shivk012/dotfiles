@@ -4,11 +4,11 @@ return {
     opts = {
       servers = {
         pylsp = {
-          enabled = false,
+          enabled = true,
           settings = {
             pylsp = {
               plugins = {
-                jedi = { enabled = true },
+                jedi = { enabled = true, extra_paths = { "/Users/shivam.kumar/projects/kraken-core/src" } },
                 pydocstyle = { enabled = false },
                 autopep8 = { enabled = false },
                 yapf = { enabled = false },

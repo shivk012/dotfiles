@@ -1,12 +1,19 @@
+zmodload zsh/zprof # use this for profiling
+
 export PATH="/opt/homebrew/bin:$PATH"
-eval "$(starship init zsh)"
 export ZSH="$HOME/.oh-my-zsh"
 
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-plugins=(fzf-tab git zsh-nvm evalcache zsh-fzf-history-search
+zstyle ':omz:plugins:nvm' lazy yes
+zstyle ':omz:plugins:fzf-tab' lazy yes
+plugins=(
+  fzf-tab 
+  git 
+  evalcache 
+  zsh-fzf-history-search
+  nvm
 )
 source $ZSH/oh-my-zsh.sh
+_evalcache starship init zsh
 
 # styling for fzf-tab 
 # disable sort when completing `git checkout`
@@ -33,7 +40,7 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:$PATH"
-_evalcache pyenv init -
+_evalcache pyenv init - --no-rehash zsh
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
@@ -42,9 +49,9 @@ pyenv virtualenvwrapper_lazy
 # RabbitMQ
 export PATH="/usr/local/sbin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 _complete_invoke() {
@@ -120,6 +127,7 @@ eval "$(register-python-argcomplete pipx)"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 enable-fzf-tab
+source <(fzf --zsh)
 
 # zoxide
 eval "$(zoxide init zsh)"
@@ -134,6 +142,10 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 eval $(thefuck --alias fk)
 
 alias theshiv='git add . && git commit --amend --no-edit && git push -f'
+
+alias open_pr='gh pr view $(gh pr list --repo octoenergy/kraken-core --search "is:pr reviewed-by:@me -author:@me is:closed" | fzf | cut -f 1) -w'
+
+alias last_edited='nvim $(git log --pretty=format: --name-only -n 1 | cut -c 5-)'
 
 # Work specific ones 
 # TODO: Move these out 
@@ -153,6 +165,16 @@ alias test='inv localdev.pytest'
 export KRAKEN_DB_PG_CLIENT=harlequin
 # export PYTHONPATH='$PYTHONPATH:/Users/shivam.kumar/.virtualenvs/kraken-core/lib/python3.12/site-packages/:/Users/shivam.kumar/projects/kraken-core/src'
 
+function test() {
+  local path=$1
+  local only_stdout=$2
+
+  if [[ "$only_stdout" == "t" ]]; then
+    inv localdev.pytest "$path" -- --show-capture=stdout --disable-warnings
+  else
+    inv localdev.pytest "$path" -- --disable-warnings
+  fi
+}
 function shell_plus(){
   local client=$1
   local json_output
@@ -177,3 +199,5 @@ function supportsite(){
   DJANGO_SETTINGS_MODULE=octoenergy.settings \
   inv supportsite.run --client $client
 }
+
+zprof # use this for profiling

@@ -26,4 +26,19 @@ return {
     ft = "python",
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" } },
   },
+  -- {
+  --   "python-rope/ropevim", -- Rope refactoring commands for Vim
+  --   ft = "python", -- only load for Python files
+  --   config = function()
+  --     -- enable ropevim (optional; it's on by default)
+  --     vim.g.ropevim_enable = 1
+  --
+  --     -- example keymaps:
+  --     local map = vim.api.nvim_set_keymap
+  --     map("n", "<leader>rv", "<Cmd>RopeExtractVariable<CR>", { silent = true })
+  --     map("n", "<leader>rm", "<Cmd>RopeExtractMethod<CR>", { silent = true })
+  --     map("n", "<leader>ri", "<Cmd>RopeInline<CR>", { silent = true })
+  --     map("n", "<leader>rr", "<Cmd>RopeRename<CR>", { silent = true })
+  --   end,
+  -- },
 }
