@@ -4,7 +4,7 @@ return {
     opts = {
       servers = {
         pylsp = {
-          enabled = true,
+          enabled = false,
           settings = {
             pylsp = {
               plugins = {

@@ -1,12 +1,12 @@
-zmodload zsh/zprof # use this for profiling
-
+# zmodload zsh/zprof # use this for profiling
+DISABLE_AUTO_UPDATE="true"
 export PATH="/opt/homebrew/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:fzf-tab' lazy yes
 plugins=(
-  fzf-tab 
+  # fzf-tab 
   git 
   evalcache 
   zsh-fzf-history-search
@@ -120,13 +120,19 @@ function db_setting() {
 
 # pipx
 export PATH="$PATH:/Users/shivam.kumar/.local/bin"
-autoload -U compinit && compinit
-eval "$(register-python-argcomplete pipx)"
-
+# Smarter completion initialization
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
+# eval "$(register-python-argcomplete pipx)"
+_evalcache register-python-argcomplete pipx
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-enable-fzf-tab
+# enable-fzf-tab
 source <(fzf --zsh)
 
 # zoxide
@@ -163,18 +169,7 @@ function clear_db(){
 
 alias test='inv localdev.pytest'
 export KRAKEN_DB_PG_CLIENT=harlequin
-# export PYTHONPATH='$PYTHONPATH:/Users/shivam.kumar/.virtualenvs/kraken-core/lib/python3.12/site-packages/:/Users/shivam.kumar/projects/kraken-core/src'
 
-function test() {
-  local path=$1
-  local only_stdout=$2
-
-  if [[ "$only_stdout" == "t" ]]; then
-    inv localdev.pytest "$path" -- --show-capture=stdout --disable-warnings
-  else
-    inv localdev.pytest "$path" -- --disable-warnings
-  fi
-}
 function shell_plus(){
   local client=$1
   local json_output
@@ -200,4 +195,4 @@ function supportsite(){
   inv supportsite.run --client $client
 }
 
-zprof # use this for profiling
+# zprof # use this for profiling

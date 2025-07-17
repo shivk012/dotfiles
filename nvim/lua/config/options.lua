@@ -4,11 +4,11 @@
 vim.g.editorconfig = false
 -- vim.g.lazyvim_python_lsp = "basedpyright"
 -- vim.lsp.enable("djlsp")
--- vim.g.lazyvim_python_lsp = "pyrefly"
--- vim.lsp.enable("pyrefly")
+vim.g.lazyvim_python_lsp = "pyrefly"
+vim.lsp.enable("pyrefly")
 -- vim.g.lazyvim_python_lsp = "ty"
 -- vim.lsp.enable("ty")
-vim.g.lazyvim_python_lsp = "pylsp"
+-- vim.g.lazyvim_python_lsp = "pylsp"
 -- vim.lsp.enable("pylsp")
 
 -- vim.lsp.set_log_level("debug")
