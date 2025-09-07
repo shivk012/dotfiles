@@ -1,4 +1,5 @@
 # zmodload zsh/zprof # use this for profiling
+
 # work out directory of original file so that only the main .zshrc file needs to be symlinked
 DIR=$(dirname $(readlink ~/.zshrc))
 
