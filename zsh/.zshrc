@@ -1,4 +1,7 @@
 # zmodload zsh/zprof # use this for profiling
+# work out directory of original file so that only the main .zshrc file needs to be symlinked
+DIR=$(dirname $(readlink ~/.zshrc))
+
 DISABLE_AUTO_UPDATE="true"
 export PATH="/opt/homebrew/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
@@ -87,19 +90,7 @@ compctl -K _complete_invoke + -f invoke inv
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 # HISTORY
-export HISTSIZE=100000
-export HISTFILE=/Users/shivam.kumar/.zsh_history
-export SAVEHIST=$HISTSIZE
-
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt SHARE_HISTORY             # Share history between all sessions.
-# END HISTORY
+source $DIR/history.sh
 
 alias ls='eza'
 alias cat='bat'
@@ -156,46 +147,7 @@ alias last_edited='nvim $(git log --pretty=format: --name-only -n 1 | cut -c 5-)
 alias edited='nvim $(git diff --name-only | cut -c 5-)'
 
 # Work specific ones 
-# TODO: Move these out 
-alias gbr-dbs='all-dbs --clients oegb,edfgb,eonnext,goodenergy '
-alias invfzf='print -z -- inv $(inv --list | cut -d " " -f 3 | sed "/^$/d" | fzf --preview="inv -h={}")'
-
-function clear_db(){
-  unset DATABASE_NAME
-  unset DATABASE_USER
-  unset DATABASE_HOST
-  unset DATABASE_PASSWORD
-  unset DATABASE_REPLICA_HOST
-  unset FORCE_SUPPORT_SITE_USER_ID
-}
-
-alias test='inv localdev.pytest'
-export KRAKEN_DB_PG_CLIENT=harlequin
-
-function shell_plus(){
-  local client=$1
-  local json_output
-  json_output=$(ktdb connections get "$client-prod.krakencore" --reveal-password)
-  DATABASE_PASSWORD=$(echo "$json_output" | jq -r '.password') \
-  DATABASE_USER=$(echo "$json_output" | jq -r '.username') \
-  DATABASE_HOST=$(echo "$json_output" | jq -r '.host') \
-  DATABASE_PORT=$(echo "$json_output" | jq -r '.port') \
-  DATABASE_NAME=$(echo "$json_output" | jq -r '.database') \
-  DJANGO_SETTINGS_MODULE=octoenergy.settings \
-  inv localdev.manage shell_plus --client $client
-}
-function supportsite(){
-  local client=$1
-  local json_output
-  json_output=$(ktdb connections get "$client-prod.krakencore" --reveal-password)
-  DATABASE_PASSWORD=$(echo "$json_output" | jq -r '.password') \
-  DATABASE_USER=$(echo "$json_output" | jq -r '.username') \
-  DATABASE_HOST=$(echo "$json_output" | jq -r '.host') \
-  DATABASE_PORT=$(echo "$json_output" | jq -r '.port') \
-  DATABASE_NAME=$(echo "$json_output" | jq -r '.database') \
-  DJANGO_SETTINGS_MODULE=octoenergy.settings \
-  inv supportsite.run --client $client
-}
+source $DIR/work.sh
 
 # zprof # use this for profiling
 
