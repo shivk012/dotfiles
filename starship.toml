@@ -18,6 +18,8 @@ $cmd_duration\
 $line_break\
 $character"""
 
+command_timeout = 700
+
 add_newline = true
 palette = "shiv"
 

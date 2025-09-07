@@ -1,0 +1,32 @@
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+zgenom autoupdate
+
+if ! zgenom saved; then
+    echo "Creating a zgenom save"
+
+    zgenom compdef
+
+    zgenom ohmyzsh plugins/git
+    zgenom load zsh-users/zsh-syntax-highlighting
+
+    zgenom load nvm 
+
+    zgenom load zsh-users/zsh-history-substring-search 
+
+    zgenom load mroth/evalcache
+    zgenom load Aloxaf/fzf-tab
+
+    # completions
+    zgenom load zsh-users/zsh-completions
+
+    # save all to init script
+    zgenom save
+
+    # Compile your zsh files
+    zgenom compile "$HOME/.zshrc"
+fi
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+

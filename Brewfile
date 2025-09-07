@@ -1,5 +1,6 @@
 cask_args appdir: '/Applications'
 
+brew "mise"
 brew "neovim"
 cask "wezterm"
 cask "arc"
