@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:fzf-tab' lazy yes
 plugins=(
-  # fzf-tab 
+  fzf-tab 
   git 
   evalcache 
   zsh-fzf-history-search
@@ -35,6 +35,7 @@ zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -140,18 +141,19 @@ eval "$(zoxide init zsh)"
 
 # tmuxifier
 export PATH="$PATH:$HOME/.tmux/plugins/tmuxifier/bin"
-eval "$(tmuxifier init -)"
+_evalcache tmuxifier init -
 
 # ipython pdb
 export PYTHONBREAKPOINT=ipdb.set_trace
 
-eval $(thefuck --alias fk)
+_evalcache thefuck --alias fk
 
 alias theshiv='git add . && git commit --amend --no-edit && git push -f'
 
 alias open_pr='gh pr view $(gh pr list --repo octoenergy/kraken-core --search "is:pr reviewed-by:@me -author:@me is:closed" | fzf | cut -f 1) -w'
 
 alias last_edited='nvim $(git log --pretty=format: --name-only -n 1 | cut -c 5-)'
+alias edited='nvim $(git diff --name-only | cut -c 5-)'
 
 # Work specific ones 
 # TODO: Move these out 
@@ -196,3 +198,6 @@ function supportsite(){
 }
 
 # zprof # use this for profiling
+
+# opencode
+export PATH="$PATH:/Users/shivam.kumar/.opencode/bin"
