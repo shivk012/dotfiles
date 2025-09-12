@@ -10,7 +10,7 @@ if ! zgenom saved; then
     zgenom ohmyzsh plugins/git
     zgenom load zsh-users/zsh-syntax-highlighting
 
-    zgenom load nvm 
+    # zgenom load nvm 
 
     zgenom load zsh-users/zsh-history-substring-search 
 

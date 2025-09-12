@@ -1,4 +1,4 @@
-# zmodload zsh/zprof # use this for profiling
+zmodload zsh/zprof # use this for profiling
 
 # work out directory of original file so that only the main .zshrc file needs to be symlinked
 DIR=$(dirname $(readlink ~/.zshrc))
@@ -8,7 +8,7 @@ zsh-defer source $DIR/fzf.zsh
 zsh-defer source $DIR/history.zsh
 zsh-defer source $DIR/work.zsh
 zsh-defer source $DIR/alias.zsh
-zsh-defer source $DIR/nvm.zsh
+# zsh-defer source $DIR/nvm.zsh
 
 _evalcache starship init zsh 
 
@@ -24,4 +24,4 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 # opencode
 export PATH="$PATH:/Users/shivam.kumar/.opencode/bin"
 
-# zprof # use this for profiling
+zprof # use this for profiling
