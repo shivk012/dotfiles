@@ -16,6 +16,7 @@ if ! zgenom saved; then
 
     zgenom load mroth/evalcache
     zgenom load Aloxaf/fzf-tab
+    zgenom load romkatv/zsh-defer
 
     # completions
     zgenom load zsh-users/zsh-completions

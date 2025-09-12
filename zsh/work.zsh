@@ -22,3 +22,6 @@ function db_setting() {
 export KRAKEN_DB_PG_CLIENT=harlequin
 
 alias kraken="cd ~/projects/kraken-core/src/ && source .venv/bin/activate"
+
+alias queries='rg -tpy -l 'deprecated_allow_too_many_queries' src/ | while read -r fp; do codeowners $fp; done | rg uk-initiatives'
+alias debt='rg -tpy -l '# (?:type:ignore|noqa|needs attention)' src/ | while read -r fp; do codeowners $fp; done | rg uk-initiatives'

@@ -3,18 +3,18 @@
 # work out directory of original file so that only the main .zshrc file needs to be symlinked
 DIR=$(dirname $(readlink ~/.zshrc))
 
-source $DIR/history.zsh
-source $DIR/work.zsh
-source $DIR/alias.zsh
-source $DIR/fzf.zsh
 source $DIR/zgenom.zsh
-source $DIR/nvm.zsh
+zsh-defer source $DIR/fzf.zsh
+zsh-defer source $DIR/history.zsh
+zsh-defer source $DIR/work.zsh
+zsh-defer source $DIR/alias.zsh
+zsh-defer source $DIR/nvm.zsh
 
 _evalcache starship init zsh 
 
-_evalcache zoxide init zsh
+zsh-defer _evalcache zoxide init zsh
 
-_evalcache mise activate zsh
+zsh-defer _evalcache mise activate zsh
 
 # pipx
 export PATH="$PATH:/Users/shivam.kumar/.local/bin"
