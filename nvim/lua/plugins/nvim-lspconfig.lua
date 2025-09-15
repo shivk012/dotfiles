@@ -48,7 +48,16 @@ return {
         end,
         desc = "Grep python def",
       }
-
+      vim.lsp.config("ty", {
+        settings = {
+          ty = {
+            experimental = {
+              autoImport = true,
+              rename = true,
+            },
+          },
+        },
+      })
       vim.lsp.config("pylsp", {
         settings = {
           pylsp = {

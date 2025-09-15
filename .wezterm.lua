@@ -9,7 +9,7 @@ config.color_scheme = "Night Owl (Gogh)"
 
 config.default_cursor_style = "BlinkingBar"
 
-config.enable_kitty_keyboard = true
+-- config.enable_kitty_keyboard = true
 
 config.enable_tab_bar = false
 
@@ -18,7 +18,7 @@ config.font_size = 13
 
 config.send_composed_key_when_left_alt_is_pressed = true
 
-config.use_ime = false
+-- config.use_ime = false
 
 config.window_decorations = "RESIZE"
 config.window_padding = {
