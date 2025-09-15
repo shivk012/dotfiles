@@ -8,7 +8,6 @@ if ! zgenom saved; then
     zgenom compdef
 
     zgenom ohmyzsh plugins/git
-    zgenom load zsh-users/zsh-syntax-highlighting
 
     # zgenom load nvm 
 
@@ -21,6 +20,7 @@ if ! zgenom saved; then
     # completions
     zgenom load zsh-users/zsh-completions
 
+    zgenom load zsh-users/zsh-syntax-highlighting
     # save all to init script
     zgenom save
 
