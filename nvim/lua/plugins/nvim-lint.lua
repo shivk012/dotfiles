@@ -4,7 +4,7 @@ return {
     opts = {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
-        ["*"] = { "typos", "cspell" },
+        -- ["*"] = { "typos", "cspell" },
         html = { "djlint" },
         python = { "ruff" },
       },

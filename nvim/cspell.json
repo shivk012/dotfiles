@@ -42,5 +42,10 @@
     "usecases",
     "workerpool",
     "xocto"
+  ],
+  "userWords": [
+    "dateutil",
+    "mhhs",
+    "TEMPJOB"
   ]
 }
