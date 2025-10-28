@@ -63,4 +63,4 @@ function invfzf
 end
 
 abbr --add queries "rg -tpy -l 'deprecated_allow_too_many_queries' . | while read -l fp; codeowners $fp; end | rg uk-initiatives"
-abbr --add debt "rg -tpy -l '# (?:type:ignore|noqa|needs attention)' . | while read -l fp; codeowners $fp; end | rg uk-initiatives"
+abbr --add debt "rg -tpy -l '# (?:type:ignore|noqa|needs_attention|nosemgrep)' . | while read -l fp; codeowners $fp; end | rg uk-initiatives"

@@ -33,57 +33,59 @@ end
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = function()
-      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-      vim.list_extend(Keys, {
-
-        { "<leader>ss", false },
-        { "<leader>sS", false },
-      })
-      -- add a keymap
-      Keys[#Keys + 1] = {
-        "<leader>gd",
-        function()
-          grep_python_def()
-        end,
-        desc = "Grep python def",
-      }
-      vim.lsp.config("ty", {
-        settings = {
-          ty = {
-            experimental = {
-              autoImport = true,
-              rename = true,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            { "<leader>ss", false },
+            { "<leader>sS", false },
+            {
+              "<leader>G",
+              function()
+                grep_python_def()
+              end,
+              desc = "Grep python def",
             },
           },
         },
-      })
-      vim.lsp.config("pylsp", {
-        settings = {
-          pylsp = {
-            plugins = {
-              jedi = { enabled = true, extra_paths = { "/Users/shivam.kumar/projects/kraken-core/src" } },
-              pydocstyle = { enabled = false },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              pycodestyle = { enabled = false },
-              pyflakes = { enabled = false },
-              mccabe = { enabled = false },
-              noy_pyls = { enabled = true },
-              pylama = { enabled = false },
-              flake8 = { enabled = false },
-              pyls_isort = { enabled = false },
-              black = { enabled = false },
-              pylsp_mypy = { enabled = false },
-              ruff = { enabled = false },
-              rope = { enabled = true },
+        ["ty"] = {
+          settings = {
+            ty = {
+              experimental = {
+                autoImport = true,
+                rename = true,
+              },
             },
           },
         },
-        flags = {
-          debounce_text_changes = 200,
+        ["pylsp"] = {
+          enabled = false,
+          settings = {
+            pylsp = {
+              plugins = {
+                jedi = { enabled = true, extra_paths = { "/Users/shivam.kumar/projects/kraken-core/src" } },
+                pydocstyle = { enabled = false },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                pycodestyle = { enabled = false },
+                pyflakes = { enabled = false },
+                mccabe = { enabled = false },
+                noy_pyls = { enabled = true },
+                pylama = { enabled = false },
+                flake8 = { enabled = false },
+                pyls_isort = { enabled = false },
+                black = { enabled = false },
+                pylsp_mypy = { enabled = false },
+                ruff = { enabled = false },
+                rope = { enabled = true },
+              },
+            },
+          },
+          flags = {
+            debounce_text_changes = 200,
+          },
         },
-      })
-    end,
+      },
+    },
   },
 }

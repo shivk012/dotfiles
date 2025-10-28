@@ -14,6 +14,13 @@ vim.lsp.enable("ty")
 
 -- vim.g.lazyvim_python_lsp = "pylsp"
 -- vim.lsp.enable("pylsp")
+-- vim.lsp.config("djls", {
+--   cmd = { "djls", "serve" },
+--   filetypes = { "htmldjango", "html", "python" },
+--   root_markers = { "manage.py", "pyproject.toml", ".git" },
+-- })
+--
+-- vim.lsp.enable("djls")
 
 -- vim.lsp.config("zuban", { cmd = { "zuban", "server" } })
 -- vim.g.lazyvim_python_lsp = "zuban"
