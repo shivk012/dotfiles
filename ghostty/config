@@ -1,0 +1,16 @@
+theme = Night Owl
+font-family = FiraCode Nerd Font Mono
+font-size = 13
+
+title=""
+macos-titlebar-style = "hidden"
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = alt+i=unbind
+keybind = alt+o=unbind
+keybind = alt+3=text:#
+
+
+
+macos-option-as-alt = true

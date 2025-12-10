@@ -50,4 +50,50 @@ return {
       },
     },
   },
+  keys = {
+    {
+      "<leader>sf",
+      function()
+        -- Wrapper to add Python path support directly in the picker
+        local original_pick = require("snacks.picker").pick
+        local picker
+
+        -- Temporarily override the pick function to hook into the input
+        require("snacks.picker").pick = function(...)
+          picker = original_pick(...)
+
+          if picker and picker.input then
+            -- Store the original get method
+            local original_get = picker.input.get
+
+            -- Override to transform Python paths to file paths
+            picker.input.get = function(self)
+              local text = original_get(self)
+
+              -- If text contains dots but no slashes, convert to file path
+              if text and text:match("%.") and not text:match("/") and not text:match("%s") then
+                return text:gsub("%.", "/")
+              end
+
+              return text
+            end
+          end
+
+          return picker
+        end
+
+        -- Call smart picker with enhanced options
+        Snacks.picker.smart({
+          hidden = false, -- Set to true to include hidden files (like .env, .gitignore)
+          ignored = false, -- Set to true to include files ignored by .gitignore
+          follow = true, -- Follow symlinks
+          cwd_bonus = true,
+        })
+
+        -- Restore original pick function
+        require("snacks.picker").pick = original_pick
+      end,
+      desc = "[S]earch [F]iles (type dots for Python)",
+    },
+  },
 }

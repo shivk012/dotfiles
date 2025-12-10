@@ -11,7 +11,15 @@ vim.g.editorconfig = false
 
 vim.g.lazyvim_python_lsp = "ty"
 vim.lsp.enable("ty")
-
+vim.lsp.config("ty", {
+  settings = {
+    ty = {
+      inlayHints = {
+        variableTypes = false,
+      },
+    },
+  },
+})
 -- vim.g.lazyvim_python_lsp = "pylsp"
 -- vim.lsp.enable("pylsp")
 -- vim.lsp.config("djls", {

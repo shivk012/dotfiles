@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export EDITOR:nvim
 SETUVAR --export PYTHONBREAKPOINT:ipdb\x2eset_trace
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
