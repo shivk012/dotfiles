@@ -1,6 +1,7 @@
 cask_args appdir: '/Applications'
 
 brew "ast-grep"
+brew "cmatrix"
 brew "eza"
 brew "fish"
 brew "fzf"
