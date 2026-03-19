@@ -32,6 +32,8 @@ abbr --add last_edited 'nvim $(git log --pretty=format: --name-only -n 1 | cut -
 
 abbr --add edited 'nvim $(git diff --name-only | cut -c 5-)'
 
+abbr --add alias pr='gh pr view --json title,url,additions,deletions | jq -j "\":pr-outline: \`+\(.additions) -\(.deletions)\` [\(.title)](\(.url))\"" | pbcopy'
+
 function fixup -d "Interactive fixup"
     set -l commit_hash (git log -n 20 --no-merges --pretty="%h %s" | fzf | cut -c -7)
     commandline --replace "git commit --fixup $commit_hash"
@@ -64,3 +66,7 @@ end
 
 abbr --add queries "rg -tpy -l 'deprecated_allow_too_many_queries' . | while read -l fp; codeowners $fp; end | rg uk-initiatives"
 abbr --add debt "rg -tpy -l '# (?:type:ignore|noqa|needs_attention|nosemgrep)' . | while read -l fp; codeowners $fp; end | rg uk-initiatives"
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :

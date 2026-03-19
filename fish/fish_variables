@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export CARAPACE_BRIDGES:zsh\x2cfish\x2cbash\x2cinshellisense
 SETUVAR --export EDITOR:nvim
-SETUVAR --export PYTHONBREAKPOINT:ipdb\x2eset_trace
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/Users/shivam\x2ekumar/\x2elocal/share/z/data
@@ -18,5 +18,4 @@ SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR --export fifc_editor:nvim
 SETUVAR fifc_keybinding:\x09
 SETUVAR fifc_open_keybinding:ctrl\x2do
-SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR fish_user_paths:/Applications/Postgres\x2eapp/Contents/Versions/latest/bin\x1e/Users/shivam\x2ekumar/\x2eopencode/bin\x1e/Users/shivam\x2ekumar/\x2elocal/bin\x1e/opt/homebrew/bin
+SETUVAR fish_user_paths:/Users/shivam\x2ekumar/\x2ecargo/bin\x1e/Applications/Postgres\x2eapp/Contents/Versions/latest/bin\x1e/Users/shivam\x2ekumar/\x2eopencode/bin\x1e/Users/shivam\x2ekumar/\x2elocal/bin\x1e/opt/homebrew/bin
