@@ -53,6 +53,13 @@
     "XOSERVE",
     "rsps",
     "Microbusiness",
-    "industrytime"
+    "industrytime",
+    "specialised",
+    "timeslot",
+    "Unmetered",
+    "Autoproducer",
+    "nosemgrep",
+    "semgrep",
+    "xsdata"
   ]
 }

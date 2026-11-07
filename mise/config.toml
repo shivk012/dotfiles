@@ -3,5 +3,5 @@ idiomatic_version_file_enable_tools = ["python"]
 python.uv_venv_auto = true
 
 [tools]
-python = "3.12"
+python = "3.13.7"
 uv = "latest"

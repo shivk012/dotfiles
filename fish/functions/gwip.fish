@@ -5,5 +5,5 @@
 function gwip -d "git commit a work-in-progress branch"
     git add -A
     git rm (git ls-files --deleted) 2>/dev/null
-    git commit -m "--wip-- [skip-ci]" --no-verify
+    git commit -m "--wip-- [skip ci]" --no-verify
 end
